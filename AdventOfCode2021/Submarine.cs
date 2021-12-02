@@ -1,33 +1,23 @@
 ﻿using System;
-using System.IO;
 
 namespace AdventOfCode2021
 {
-    public static class Submarine
+    public class Submarine
     {
-        public static int position = 0;
-        public static int depth = 0;
-        public static int aim = 0;
+        private int position = 0;
+        private int depth = 0;
+        private int aim = 0;
 
-        public static void Reset()
-        {
-            position = 0;
-            depth = 0;
-            aim = 0;
-        }
+        public int Position => position;
+        public int Depth => depth;
 
-        public static string[] GetInputs()
-        {
-            return File.ReadAllLines( @"D:\Desktop\FutureGames\AdventOfCode2021\AdventOfCode2021\Day2Input.txt" );
-        }
-
-        public static void MakeMoves(string[] moves)
+        public void MakeMoves(string[] moves)
         {
             foreach (string s in moves)
                 Move( s );
         }
 
-        private static void Move(string movement)
+        private void Move(string movement)
         {
             string[] input = movement.Split( ' ' );
             string command = input[0];
@@ -49,13 +39,13 @@ namespace AdventOfCode2021
             }
         }
 
-        public static void MakeMovesWithAim(string[] moves)
+        public void MakeMovesWithAim(string[] moves)
         {
             foreach (string s in moves)
                 MoveWithAim( s );
         }
 
-        private static void MoveWithAim(string movement)
+        private void MoveWithAim(string movement)
         {
             string[] input = movement.Split( ' ' );
             string command = input[0];

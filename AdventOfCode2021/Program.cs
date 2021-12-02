@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace AdventOfCode2021
 {
@@ -8,12 +9,19 @@ namespace AdventOfCode2021
         {
             Day1();
             Day2();
+            Console.ReadLine();
         }
 
         private static void Day1()
         {
             Console.WriteLine( "Day 1" );
-            int[] numbers = Sonar.GetNumbers();
+
+            string[] input = File.ReadAllLines( @"..\..\Day1Input.txt" );
+
+            int[] numbers = new int[input.Length];
+            for (int i = 0; i < input.Length; i++)
+                numbers[i] = Convert.ToInt32( input[i] );
+
             Console.WriteLine( Sonar.GetIncreasedCount( numbers ) );
             Console.WriteLine( Sonar.GetIncreasedCount( Sonar.GetTripletSums( numbers ) ) );
             Console.WriteLine();
@@ -23,14 +31,15 @@ namespace AdventOfCode2021
         {
             Console.WriteLine( "Day 2" );
 
-            string[] input = Submarine.GetInputs();
-            Submarine.MakeMoves( input );
-            Console.WriteLine( Submarine.position * Submarine.depth );
+            string[] input = File.ReadAllLines( @"..\..\Day2Input.txt" );
+            Submarine sub = new Submarine();
+            sub.MakeMoves( input );
+            Console.WriteLine( sub.Position * sub.Depth );
 
-            Submarine.Reset();
-            Submarine.MakeMovesWithAim( input );
-            Console.WriteLine( Submarine.position * Submarine.depth );
-            Console.ReadLine();
+            sub = new Submarine();
+            sub.MakeMovesWithAim( input );
+            Console.WriteLine( sub.Position * sub.Depth );
+            Console.WriteLine();
         }
     }
 }
